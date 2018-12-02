@@ -1,3 +1,7 @@
+<?php
+if ($_SERVER["PHP_SELF"] != "/index.php") header("location: /");
+$_SESSION["error"] = "";
+?>
 <style>
 footer {
     position: fixed;
@@ -10,4 +14,5 @@ footer {
     background-color: white;
 }
 </style>
+<span class="space">&nbsp;</span>
 <footer>© Camagru 2018</footer>

@@ -1,3 +1,7 @@
+<?php
+if ($_SERVER["PHP_SELF"] != "/index.php") header("location: /");
+if (array_key_exists('user', $_SESSION)) header("location: /");
+?>
 <style>
 /* Style all input fields */
 input {
@@ -89,6 +93,7 @@ input[type=submit] {
         <p>Password confirmed</p>
     </div>
 </div>
+<pre id="error"></pre>
 <script>
     var inputs = [].slice.call(document.querySelectorAll(".form > input[type='text'], .form > input[type='password']"));
 
@@ -132,11 +137,12 @@ input[type=submit] {
             xhr.open('POST', "utils/signup.php", true)
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xhr.onload = function () {
-                var response = JSON.parse(xhr.responseText);
+                var response = xhr.responseText;
                 if (xhr.readyState == 4 && xhr.status == "200") {
-                    console.table(response);
+                    if (response == "Ok") location = location.origin;
+                    document.querySelector("#error").innerHTML = response;
                 } else {
-                    console.error(response);
+                    //console.error(response);
                 }
             }
             var tab = {};

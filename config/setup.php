@@ -11,11 +11,12 @@ $pdo->exec("CREATE TABLE `users` (
 	`pwd` varchar(128) NOT NULL,
 	`email` varchar(30) NOT NULL UNIQUE KEY,
 	`activationkey` varchar(384) NOT NULL,
-	`status` int(2) NOT NULL DEFAULT '-1')");
+	`status` int(2) NOT NULL DEFAULT '0')");
 
 $pdo->exec("CREATE TABLE `image` (
 	`id` int(11) NOT NULL PRIMARY KEY UNIQUE KEY AUTO_INCREMENT,
 	`path` varchar(250) NOT NULL,
+	`nblike` int(11) UNSIGNED NOT NULL DEFAULT '0',
 	`user_id` int(11) NOT NULL)");
 
 $pdo->exec("CREATE TABLE `comment` (
@@ -32,10 +33,11 @@ $pdo->exec("INSERT INTO `users` (
 		`activationkey`
 	) VALUES (
 		'tbailleu',
-		'tbailleu@student.42.fr',
+		'poubelle50@hotmail.fr',
 		'".hash('whirlpool', "Pass1234")."',
 		1,
-		'0'");
+		'0'
+	)");
 
 $pdo->exec("INSERT INTO `users` (
 		`username`,
@@ -44,8 +46,9 @@ $pdo->exec("INSERT INTO `users` (
 		`status`,
 		`activationkey`
 	) VALUES (
-		'acalleja',
-		'acalleja@student.42.fr',
+		'blsegal',
+		'blsegal@byom.de',
 		'".hash('whirlpool', "Salut123")."',
 		1,
-		'0'");
+		'0'
+	)");

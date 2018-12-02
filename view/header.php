@@ -1,4 +1,13 @@
+<?php
+if ($_SERVER["PHP_SELF"] != "/index.php") header("location: /");
+?>
 <style>
+* {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+    border-spacing: 0;
+    box-sizing: border-box;
+    border: none;
+}
 nav {
     position: fixed;
     top: 0;
@@ -12,7 +21,7 @@ nav {
     background-color: white;
 }
 nav > ul {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 nav > ul > a > li {
     align-content: center;
@@ -30,16 +39,24 @@ span.space {
     display: block;
     padding: .8em;
 }
+pre#error {
+    padding: 1em;
+}
 </style>
 <nav>
     <div>
-        logo
+        <a href="/">Camagru</a>
     </div>
     <ul>
-        <a href=""><li>account</li></a>
-        <a href=""><li>capture</li></a>
-        <a href=""><li>signin</li></a>
-        <a href=""><li>logout</li></a>
+        <?php if (array_key_exists('user', $_SESSION)):?>
+        <a href="?capture"><li>capture</li></a>
+        <a href="?account"><li>account</li></a>
+        <a href="/utils/logout.php"><li>logout</li></a>
+        <?php else:?>
+        <li>&nbsp;</li>
+        <a href="?signup"><li>signup</li></a>
+        <a href="?login"><li>login</li></a>
+        <?php endif;?>
     </ul>
 </nav>
 <span class="space">&nbsp;</span>
